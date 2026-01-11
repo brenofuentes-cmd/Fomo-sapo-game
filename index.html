@@ -479,14 +479,19 @@
   function loadAssets() {
     return new Promise((resolve) => {
       let left = 2;
-      const done = () => { left--; if (left <= 0) { assetsReady = true; resolve(); } };
+      const done = () => { 
+        left--; 
+        if (left <= 0) { assetsReady = true; resolve(); } 
+      };
 
-      IMG.bg.onload = done; IMG.bg.onerror = done;
-      IMG.frog.onload = done; IMG.frog.onerror = done;
+      IMG.bg.onload = done; 
+      IMG.bg.onerror = () => { console.error("Erro BG"); done(); };
+      IMG.frog.onload = done; 
+      IMG.frog.onerror = () => { console.error("Erro Frog"); done(); };
 
-      const v = Date.now();
-    IMG.bg.src = ASSETS.bg + "?v=" + v;
-    IMG.frog.src = ASSETS.frog + "?v=" + v;
+      // Versão sem erro de sintaxe para celular
+      IMG.bg.src = "bg.png?v=" + Date.now();
+      IMG.frog.src = "frog.png?v=" + Date.now();
     });
   }
 
