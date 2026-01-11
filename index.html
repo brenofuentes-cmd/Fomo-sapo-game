@@ -485,8 +485,8 @@
       IMG.frog.onload = done; IMG.frog.onerror = done;
 
       const v = Date.now();
-      IMG.bg.src = `$${ASSETS.bg}?v=$${v}`;
-      IMG.frog.src = `$${ASSETS.frog}?v=$${v}`;
+    IMG.bg.src = ASSETS.bg + "?v=" + v;
+    IMG.frog.src = ASSETS.frog + "?v=" + v;
     });
   }
 
